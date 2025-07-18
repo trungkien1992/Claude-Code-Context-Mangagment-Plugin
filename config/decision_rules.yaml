@@ -1,0 +1,14 @@
+# Example decision rules for the Decision Engine
+rules:
+  - name: HighConfidenceAction
+    description: Trigger when confidence is high and risk is low
+    condition: confidence > config.thresholds.confidence and risk < config.thresholds.risk
+    action: trigger_high_confidence_action
+  - name: LimitActions
+    description: Prevent action if max actions reached
+    condition: actions_taken >= config.limits.max_actions
+    action: block_action
+  - name: AllowExternalCommand
+    description: Allow external command if preference is enabled
+    condition: config.preferences.allow_external_commands == True
+    action: allow_external_command 

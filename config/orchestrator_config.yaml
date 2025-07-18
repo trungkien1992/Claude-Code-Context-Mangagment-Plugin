@@ -1,0 +1,83 @@
+orchestration_config:
+  automation_level: "high"
+  digest_threshold: 3
+  session_duration_trigger: 30.0
+  token_threshold: 0.75
+  auto_trigger: true
+  preserve_code: true
+  rag_integration: true
+  continuity_priority: "high"
+
+workflow_profiles:
+  development:
+    automation_level: "high"
+    digest_threshold: 2
+    session_duration_trigger: 25.0
+    token_threshold: 0.8
+    continuity_priority: "high"
+    focus: "implementation_tracking"
+    
+  research:
+    automation_level: "medium"
+    digest_threshold: 4
+    session_duration_trigger: 45.0
+    token_threshold: 0.7
+    continuity_priority: "medium"
+    focus: "information_synthesis"
+    
+  debugging:
+    automation_level: "low"
+    digest_threshold: 5
+    session_duration_trigger: 60.0
+    token_threshold: 0.6
+    continuity_priority: "low"
+    focus: "problem_isolation"
+    
+  documentation:
+    automation_level: "high"
+    digest_threshold: 1
+    session_duration_trigger: 20.0
+    token_threshold: 0.8
+    continuity_priority: "high"
+    focus: "comprehensive_recording"
+
+command_triggers:
+  auto_digest:
+    - condition: "session_duration > 30"
+      action: "create"
+      priority: "medium"
+    - condition: "completed_tasks >= 3"
+      action: "create"
+      priority: "high"
+    - condition: "session_duration > 60"
+      action: "snapshot"
+      priority: "high"
+    - condition: "major_implementation_complete"
+      action: "create"
+      priority: "high"
+      
+  auto_compact:
+    - condition: "token_count > 6000"
+      action: "standard"
+      priority: "high"
+    - condition: "repetitive_patterns > 3"
+      action: "deep"
+      priority: "medium"
+    - condition: "message_count > 25"
+      action: "light"
+      priority: "low"
+    - condition: "topic_change_detected"
+      action: "focus"
+      priority: "medium"
+
+integration_settings:
+  claude_code_integration: true
+  git_integration: true
+  project_awareness: true
+  workspace_detection: true
+  
+monitoring:
+  log_level: "info"
+  metrics_collection: true
+  performance_tracking: true
+  user_feedback: true

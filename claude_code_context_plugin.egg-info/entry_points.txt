@@ -1,0 +1,3 @@
+[console_scripts]
+claude-code-plugin = claude_code_plugin.cli.commands:main
+
