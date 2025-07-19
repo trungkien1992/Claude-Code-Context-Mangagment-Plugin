@@ -1,0 +1,205 @@
+#!/bin/bash
+
+# Enhanced Claude AI Development Workflow Engine  
+# Revolutionary EAEPT methodology with intelligent auto-orchestration
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENGINE_DIR="$SCRIPT_DIR/workflow"
+CONFIG_DIR="$SCRIPT_DIR/config"
+EAEPT_ENGINE="$ENGINE_DIR/eaept_engine.py"
+
+# Colors for beautiful output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+print_header() {
+    echo -e "${PURPLE}╔══════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${NC} 🚀 ${CYAN}${BOLD}Enhanced Claude AI Development Workflow Engine${NC}      ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}    ${YELLOW}Express-Ask-Explore-Plan-Code-Test Methodology${NC}        ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+}
+
+print_status() { echo -e "${BLUE}[WORKFLOW]${NC} $1"; }
+print_success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+print_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+print_innovation() { echo -e "${PURPLE}[INNOVATION]${NC} $1"; }
+
+check_dependencies() {
+    if ! command -v python3 &> /dev/null; then
+        print_error "Python 3 is required but not installed"
+        exit 1
+    fi
+    
+    if [ ! -f "$EAEPT_ENGINE" ]; then
+        print_error "EAEPT engine not found at $EAEPT_ENGINE"
+        exit 1
+    fi
+}
+
+quick_start() {
+    print_header
+    print_innovation "Enhanced EAEPT Quick Start Templates"
+    echo ""
+    echo -e "${CYAN}Select a development scenario:${NC}"
+    echo ""
+    echo "  1) 🎨 UI Component           → Create new interface component"
+    echo "  2) ⚡ API Endpoint           → Implement backend service"  
+    echo "  3) 📱 Mobile Feature         → Add mobile functionality"
+    echo "  4) 🔗 Smart Contract         → Develop blockchain contract"
+    echo "  5) 🚀 Performance Boost      → Optimize application speed"
+    echo "  6) 🧪 Testing Suite          → Create comprehensive tests"
+    echo "  7) 🔄 System Integration     → Connect multiple services"
+    echo "  8) 🛡️  Security Enhancement   → Improve application security"
+    echo "  9) 📊 Data Pipeline          → Build data processing flow"
+    echo " 10) 🤖 AI/ML Feature          → Integrate machine learning"
+    echo " 11) 🛠️  Custom Task            → Enter your own description"
+    echo ""
+    read -p "Enter your choice (1-11): " choice
+    
+    case $choice in
+        1) python3 "$EAEPT_ENGINE" --start "Create new UI component with modern design patterns and accessibility" --auto ;;
+        2) python3 "$EAEPT_ENGINE" --start "Implement REST API endpoint with validation, error handling, and documentation" --auto ;;
+        3) python3 "$EAEPT_ENGINE" --start "Add mobile feature with responsive design and performance optimization" --auto ;;
+        4) python3 "$EAEPT_ENGINE" --start "Develop smart contract with security auditing and gas optimization" --auto ;;
+        5) python3 "$EAEPT_ENGINE" --start "Optimize application performance with profiling and bottleneck analysis" --auto ;;
+        6) python3 "$EAEPT_ENGINE" --start "Create comprehensive testing suite with unit, integration, and e2e tests" --auto ;;
+        7) python3 "$EAEPT_ENGINE" --start "Integrate multiple systems with proper error handling and monitoring" --auto ;;
+        8) python3 "$EAEPT_ENGINE" --start "Enhance application security with vulnerability assessment and fixes" --auto ;;
+        9) python3 "$EAEPT_ENGINE" --start "Build data processing pipeline with monitoring and error recovery" --auto ;;
+        10) python3 "$EAEPT_ENGINE" --start "Integrate AI/ML feature with proper data handling and model optimization" --auto ;;
+        11) 
+            read -p "Enter custom task description: " task
+            if [ -n "$task" ]; then
+                python3 "$EAEPT_ENGINE" --start "$task" --auto
+            else
+                print_error "Task description cannot be empty"
+                exit 1
+            fi
+            ;;
+        *) 
+            print_error "Invalid choice. Please enter 1-11."
+            exit 1 
+            ;;
+    esac
+}
+
+show_help() {
+    echo -e "${PURPLE}${BOLD}Enhanced Claude AI Development Workflow Engine${NC}"
+    echo ""
+    echo -e "${CYAN}Revolutionary EAEPT methodology with intelligent auto-orchestration${NC}"
+    echo ""
+    echo -e "${BOLD}Usage:${NC} $0 [command] [options]"
+    echo ""
+    echo -e "${BOLD}Commands:${NC}"
+    echo -e "  ${GREEN}start <task>${NC}     Start new EAEPT workflow with task description"
+    echo -e "  ${GREEN}continue${NC}         Continue existing workflow from current phase"
+    echo -e "  ${GREEN}status${NC}           Show current workflow and system status"
+    echo -e "  ${GREEN}phase <name>${NC}     Execute specific phase (express|ask|explore|plan|code|test)"
+    echo -e "  ${GREEN}quick${NC}            Quick start with development templates"
+    echo -e "  ${GREEN}reset${NC}            Reset workflow state"
+    echo -e "  ${GREEN}help${NC}             Show this help message"
+    echo ""
+    echo -e "${BOLD}Examples:${NC}"
+    echo -e "  $0 start \"${YELLOW}Implement user authentication system${NC}\""
+    echo -e "  $0 quick"
+    echo -e "  $0 phase explore"
+    echo -e "  $0 continue"
+    echo -e "  $0 status"
+    echo ""
+    echo -e "${BOLD}EAEPT Phases:${NC}"
+    echo -e "  ${PURPLE}express${NC}    Deep analysis and task framing"
+    echo -e "  ${BLUE}ask${NC}        Interactive clarification and validation"
+    echo -e "  ${GREEN}explore${NC}    RAG-powered research and discovery"
+    echo -e "  ${YELLOW}plan${NC}       Detailed implementation planning"
+    echo -e "  ${RED}code${NC}       Systematic implementation with monitoring"
+    echo -e "  ${CYAN}test${NC}       Comprehensive validation and QA"
+    echo ""
+    echo -e "${BOLD}Revolutionary Features:${NC}"
+    echo -e "  ✅ ${GREEN}Full auto-orchestration${NC} between phases"
+    echo -e "  ✅ ${GREEN}Intelligent context management${NC} with optimization"
+    echo -e "  ✅ ${GREEN}RAG integration${NC} with knowledge base research"
+    echo -e "  ✅ ${GREEN}Phase-specific optimization${NC} strategies"
+    echo -e "  ✅ ${GREEN}Real-time monitoring${NC} and recommendations"
+    echo -e "  ✅ ${GREEN}Project-aware templates${NC} for quick starts"
+    echo -e "  ✅ ${GREEN}Pattern learning${NC} for workflow optimization"
+    echo ""
+}
+
+main() {
+    case "$1" in
+        "start")
+            check_dependencies
+            print_header
+            print_status "Starting Enhanced EAEPT Workflow"
+            echo ""
+            python3 "$EAEPT_ENGINE" --start "$2" --auto
+            ;;
+        "continue")
+            check_dependencies
+            print_header
+            print_status "Continuing Enhanced EAEPT Workflow"
+            echo ""
+            python3 "$EAEPT_ENGINE" --continue-workflow
+            ;;
+        "status")
+            check_dependencies
+            print_header
+            print_status "Enhanced EAEPT Workflow Status"
+            echo ""
+            python3 "$EAEPT_ENGINE" --status
+            ;;
+        "phase")
+            check_dependencies
+            print_header
+            print_status "Executing Phase: $2"
+            echo ""
+            python3 "$EAEPT_ENGINE" --phase "$2"
+            ;;
+        "quick")
+            check_dependencies
+            quick_start
+            ;;
+        "reset")
+            check_dependencies
+            print_header
+            print_status "Resetting Enhanced EAEPT Workflow"
+            echo ""
+            python3 "$EAEPT_ENGINE" --reset
+            ;;
+        "help"|"--help"|"-h")
+            show_help
+            ;;
+        "")
+            print_header
+            print_innovation "Welcome to Enhanced Claude AI Development Workflow Engine!"
+            echo ""
+            echo "🚀 Experience systematic AI-powered development with EAEPT methodology"
+            echo ""
+            echo "Quick commands:"
+            echo "  • $0 quick              → Choose from development templates"  
+            echo "  • $0 help               → Complete documentation"
+            echo ""
+            echo "Example workflow:"
+            echo "  • $0 start \"Build payment system\""
+            echo ""
+            ;;
+        *)
+            print_error "Unknown command: $1"
+            echo ""
+            echo "Use '$0 help' for usage information"
+            echo "Use '$0 quick' for quick start templates"
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
